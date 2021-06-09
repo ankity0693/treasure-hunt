@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
+/*
+This class contains Treasure hunt path calculation algorithm.
+ */
 @Component
 public class TreasurePathTracking {
 

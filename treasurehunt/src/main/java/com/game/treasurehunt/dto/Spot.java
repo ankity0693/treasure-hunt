@@ -6,8 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.game.treasurehunt.Util;
 import com.game.treasurehunt.exception.DataIncorrectException;
 import com.google.common.base.Objects;
-import org.springframework.lang.NonNull;
 
+/*
+This class will contain the data at each spot. i.e spots row and col value and
+what is next treasure clue.
+ */
 public class Spot {
   Integer row;
   Integer col;
@@ -39,7 +42,8 @@ public class Spot {
     return val;
   }
 
-  public void setVal(@NonNull Integer val) throws DataIncorrectException {
+  public void setVal(Integer val) throws DataIncorrectException {
+    java.util.Objects.requireNonNull(val);
     validateUnitPlace(Util.getUnitPlace(val));
     validateTensPlace(Util.getTensPlace(val));
     this.val = val;
@@ -50,6 +54,7 @@ public class Spot {
   }
 
   public void setRow(Integer row) {
+    java.util.Objects.requireNonNull(row);
     this.row = row;
   }
 
@@ -58,6 +63,7 @@ public class Spot {
   }
 
   public void setCol(Integer col) {
+    java.util.Objects.requireNonNull(col);
     this.col = col;
   }
 

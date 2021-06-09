@@ -6,7 +6,10 @@ import com.game.treasurehunt.dto.TreasurePath;
 import com.game.treasurehunt.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+/*
+Treasure hunt will act as a platform where we are keeping our treasure map board data
+and we are initiating the calculation of treasure path.
+ */
 @Component
 public class TreasureHunt {
   Board board;

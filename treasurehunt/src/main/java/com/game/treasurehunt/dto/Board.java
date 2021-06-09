@@ -2,9 +2,11 @@ package com.game.treasurehunt.dto;
 
 import static com.game.treasurehunt.dto.Constant.BOARD_SIZE;
 
-import com.game.treasurehunt.exception.DataIncorrectException;
 import com.google.common.base.Objects;
 
+/*
+Board class will contain the treasure map data.
+ */
 public class Board {
 
   private Spot[][] treasureBoard;
@@ -16,14 +18,33 @@ public class Board {
     return treasureBoard;
   }
 
+  /**
+   * Sets treasure map data and this does the validation also whether treasure board is of
+   * required size or not.
+   *
+   * @param treasureBoard {@link Spot[][]}
+   * @throws IllegalArgumentException Exception thrown if board size is not as expected
+   */
   public void setTreasureBoard(Spot[][] treasureBoard)
-      throws IllegalArgumentException, DataIncorrectException {
-    if (treasureBoard.length != BOARD_SIZE
-        || treasureBoard[0].length != BOARD_SIZE) {
+      throws IllegalArgumentException {
+    validateBoardSize(treasureBoard);
+    this.treasureBoard = treasureBoard;
+  }
+
+  /*
+  This method checks if we have required board size or not.
+   */
+  private void validateBoardSize(Spot[][] treasureBoard) {
+    if (treasureBoard.length != BOARD_SIZE) {
       throw new IllegalArgumentException(
           "Given treasureBoard size is not matching with the boardSize : " + BOARD_SIZE);
     }
-    this.treasureBoard = treasureBoard;
+    for(int i = 0 ; i < BOARD_SIZE; i++) {
+      if(treasureBoard[i].length != BOARD_SIZE) {
+        throw new IllegalArgumentException(
+            "Given treasureBoard size is not matching with the boardSize : " + BOARD_SIZE);
+      }
+    }
   }
 
   public Spot getSpot(int row, int col) {
@@ -53,6 +74,9 @@ public class Board {
     return isBoardDataEquals(treasureBoard, board.treasureBoard);
   }
 
+  /*
+  Checks for objects spot values are same or not.
+   */
   private boolean isBoardDataEquals(Spot[][] treasureBoard, Spot[][] treasureBoard1) {
     for (int row = 0; row < treasureBoard.length; row++) {
       for (int col = 0; col < treasureBoard[0].length; col++) {
